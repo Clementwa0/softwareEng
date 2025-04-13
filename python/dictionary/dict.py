@@ -34,5 +34,3 @@ for key, value in student.items():
 color = {"red","blue","white"}
 print(color)
 
-# Tuples
-coord 
