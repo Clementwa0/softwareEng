@@ -1,0 +1,5 @@
+Welcome to file handling in Python!
+This is a sample text file.
+We will count words and convert to uppercase.
+File operations are very important.
+Python makes it easy to work with files.
