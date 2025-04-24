@@ -7,19 +7,19 @@
     <title>Document</title>
   </head>
   <body>
-    <input id="agent-password" placeholder="Agent Password" required />
+    <input id="agent-password" placeholder="Agent Password 1234" required />
     <button onclick="checkPass()">Enter</button>
     <p id="error"></p>
     <div id="secret-message">
       Welcome, Agent! 
       <br />
-    <button id="secret-btn">Hold to Reveal</button>
+    <button id="secret-btn" onclick="alert('Hold on a minute')">Hold to Reveal</button>
     <div id="secret-panel" style="display: none">
       🎯 Secret Mission Briefing
         <br />
         Your mission is to find the hidden treasure. Follow the clues and stay alert!
         <br />
-        <h1>Hold Before you leave</h1>
+        <h1>Wait, Before you leave</h1>
         <p>Click S, A, V, E from your keyboard to reveal the secret message.</p>
     </div>
     </div>

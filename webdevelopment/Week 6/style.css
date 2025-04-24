@@ -1,6 +1,6 @@
 body {
     background-color: #1a1a1a;
-    color: #00ff00;
+    color: #ffffff;
     font-family: 'Courier New', monospace;
     margin: 0;
     padding: 20px;
@@ -53,7 +53,7 @@ button:hover {
 #secret-panel {
     margin-top: 20px;
     padding: 20px;
-    border: 2px dashed #00ff00;
+    border: 2px dashed #13c513;
     border-radius: 5px;
 }
 

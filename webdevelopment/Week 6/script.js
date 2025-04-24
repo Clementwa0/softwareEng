@@ -4,9 +4,10 @@ function checkPass(){
 
     if (pass === "1234"){
         document.body.innerHTML = "<h1>Welcome Agent</h1>";
-        document.body.style.backgroundColor = "lightgreen";
+        document.body.style.backgroundColor = "green";
     }else{
-        document.getElementById("error").innerText = "Access Denied!";
+        document.getElementById("error").innerHTML = "Access Denied!";
+        document.body.innerHTML = "<h1>Access Denied!</h1>";
         document.body.style.backgroundColor = "red";
     }
 }
