@@ -1,0 +1,84 @@
+# Import necessary libraries
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.datasets import load_iris
+
+# Try to load the Iris dataset from sklearn
+try:
+    iris_data = load_iris()  # Load dataset
+    # Convert to a pandas DataFrame
+    df = pd.DataFrame(data=iris_data.data, columns=iris_data.feature_names)
+    
+    # Add the target (species) as a new column
+    df['species'] = iris_data.target
+    # Map numerical targets to actual species names
+    df['species'] = df['species'].map(dict(zip(range(3), iris_data.target_names)))
+    print("Dataset loaded successfully.")
+except Exception as e:
+    print(f"Error loading dataset: {e}")
+
+# Display the first five rows of the dataset
+print(df.head())
+
+# Print info about the dataset including data types and non-null counts
+print("\nDataset Info:")
+print(df.info())
+
+# Check for any missing values
+print("\nMissing Values:\n", df.isnull().sum())
+
+# Since there are no missing values in Iris, we just show how you'd drop them
+df = df.dropna()  # Alternatively: df.fillna(value)
+
+# Show descriptive statistics for numeric columns
+print("\nDescriptive Statistics:")
+print(df.describe())
+
+# Group data by species and compute mean for each numeric column
+grouped_means = df.groupby('species').mean()
+print("\nMean values grouped by species:")
+print(grouped_means)
+
+# Print insights about which species has the highest mean in each feature
+print("\nInsights:")
+for column in df.columns[:-1]:  # Exclude the species column
+    max_species = grouped_means[column].idxmax()
+    print(f"{max_species} has the highest average {column}")
+# Set seaborn style for cleaner plots
+sns.set(style='whitegrid')
+
+# 1. Line Chart - Simulate a time-series using index
+plt.figure(figsize=(10, 5))
+plt.plot(df.index, df['sepal length (cm)'], label='Sepal Length')
+plt.plot(df.index, df['petal length (cm)'], label='Petal Length')
+plt.title('Simulated Trend of Sepal and Petal Length')
+plt.xlabel('Index')
+plt.ylabel('Length (cm)')
+plt.legend()
+plt.show()
+
+# 2. Bar Chart - Compare average petal length across species
+plt.figure(figsize=(8, 6))
+sns.barplot(data=df, x='species', y='petal length (cm)', errorbar=None)
+plt.title('Average Petal Length per Species')
+plt.xlabel('Species')
+plt.ylabel('Petal Length (cm)')
+plt.show()
+
+# 3. Histogram - Show distribution of sepal width
+plt.figure(figsize=(8, 6))
+plt.hist(df['sepal width (cm)'], bins=15, color='skyblue', edgecolor='black')
+plt.title('Distribution of Sepal Width')
+plt.xlabel('Sepal Width (cm)')
+plt.ylabel('Frequency')
+plt.show()
+
+# 4. Scatter Plot - Show relationship between sepal and petal length
+plt.figure(figsize=(8, 6))
+sns.scatterplot(data=df, x='sepal length (cm)', y='petal length (cm)', hue='species')
+plt.title('Sepal Length vs. Petal Length')
+plt.xlabel('Sepal Length (cm)')
+plt.ylabel('Petal Length (cm)')
+plt.legend(title='Species')
+plt.show()
